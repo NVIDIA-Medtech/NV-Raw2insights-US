@@ -3,42 +3,7 @@ from __future__ import annotations
 import torch
 from torch import nn
 
-__all__ = ["IQAutoencoder", "TransformerBlock", "sinusoid_pe"]
-
-
-class TransformerBlock(nn.Module):
-    """Lightweight transformer block for 1-D latent sequences."""
-
-    def __init__(self, c: int, nhead: int = 8, dim_ff: int | None = None, dropout: float = 0.1) -> None:
-        super().__init__()
-        dim_ff = dim_ff or 4 * c
-        self.attn = nn.MultiheadAttention(c, nhead, dropout=dropout, batch_first=True)
-        self.ff = nn.Sequential(
-            nn.Linear(c, dim_ff),
-            nn.GELU(),
-            nn.Linear(dim_ff, c),
-        )
-        self.norm1 = nn.LayerNorm(c)
-        self.norm2 = nn.LayerNorm(c)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # x: [B, C, T] -> attn expects [B, T, C]
-        x_time = x.transpose(1, 2)
-        attn_out, _ = self.attn(x_time, x_time, x_time)
-        x_time = self.norm1(x_time + attn_out)
-        ff_out = self.ff(x_time)
-        x_time = self.norm2(x_time + ff_out)
-        return x_time.transpose(1, 2)
-
-
-def sinusoid_pe(T: int, C: int, device: torch.device) -> torch.Tensor:
-    pos = torch.arange(T, device=device).float().unsqueeze(1)  # [T,1]
-    i = torch.arange(C // 2, device=device).float().unsqueeze(0)  # [1,C/2]
-    w = 1.0 / (10000 ** (2 * i / C))
-    pe = torch.zeros(T, C, device=device)
-    pe[:, 0::2] = torch.sin(pos * w)
-    pe[:, 1::2] = torch.cos(pos * w)
-    return pe.transpose(0, 1).unsqueeze(0)  # [1,C,T]
+__all__ = ["IQAutoencoder"]
 
 
 class IQAutoencoder(nn.Module):
