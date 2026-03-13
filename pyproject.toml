@@ -1,0 +1,23 @@
+[project]
+name = "nv-raw2insights-us"
+version = "0.1.0"
+description = "Ultrasound RF foundation model for sound speed estimation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.9.1",
+    "numpy>=1.24.0",
+    "matplotlib>=3.8.4",
+    "tqdm>=4.67.1",
+    "pyyaml>=6.0.0",
+    "datasets>=2.14.0",
+    "huggingface_hub>=0.20.0",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }

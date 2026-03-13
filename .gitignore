@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+
+# Training artifacts
+checkpoints/
+runs/
+experiments/runs/
+experiments/results/
+experiments/wandb/
+wandb/
+debug_checkpoints/
+*.ckpt
+*.pth
+*.pt
+
+# Data files
+*.mat
+*.npy
+*.arrow
+*.dat
+*.bin
+*.pmcr
+*.csv
+*.json
+datasets
+
+# Media
+*.png
+*.mp4
+*.wmv
+*.gif
+
+# Secrets
+.env
+.deploy_commit
+
+# Vendored / third-party
+vendor/
+third_party/
+!third_party/MedSAM3
+examples/experiments/
+
+# IDE
+.cursor/
+
+# System
+*.so
+*.Python
+*.tmp
+.DS_Store
+arxiv/
