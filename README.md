@@ -8,7 +8,7 @@
 Estimates tissue speed-of-sound from raw ultrasound RF channel data, enabling adaptive beamforming for sharper images — trained with [DBUA](https://github.com/waltsims/dbua) differentiable beamforming supervision.
 
 <p align="center">
-  <img src="corrected-b-mode.png" alt="Original B-mode, corrected B-mode, and velocity overlay" width="700"/>
+  <img src="nv-raw2insight-us-hero.png" alt="Original B-mode, corrected B-mode, and velocity overlay" width="700"/>
 </p>
 
 ## Overview
