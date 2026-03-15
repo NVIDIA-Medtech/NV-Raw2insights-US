@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """Download the NV-Raw2Insights-US dataset from HuggingFace Hub.
 
 Run once before training -- subsequent load_dataset() calls use the cache.
