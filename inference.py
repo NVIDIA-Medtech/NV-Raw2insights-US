@@ -34,7 +34,7 @@ def main():
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     out_dir = Path(args.output_dir)
-    out_dir.mkdir(exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     # Probe dataset for shapes
     ds = load_dataset(REPO, split=args.split, streaming=True)
