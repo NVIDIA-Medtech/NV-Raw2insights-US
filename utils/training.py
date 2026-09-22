@@ -58,7 +58,8 @@ def save_checkpoint(state: dict[str, Any], run: RunPaths, *, name: str = "last.c
 
 
 def load_checkpoint(path: Path | str) -> dict[str, Any]:
-    return torch.load(Path(path), map_location="cpu")
+    """Load tensor and primitive checkpoint state without arbitrary pickle objects."""
+    return torch.load(Path(path), map_location="cpu", weights_only=True)
 
 
 def save_config_snapshot(run: RunPaths, cfg: dict[str, Any], *, name: str = "config.yaml", overwrite: bool = False) -> Path:
